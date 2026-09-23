@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DevFlow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+
+    <aside class="sidebar">
+      <a class="logo" href="#/dashboard">DevFlow</a>
+      <nav class="nav" aria-label="Principal">
+        <a class="nav__link is-active" href="#/dashboard" aria-current="page">Dashboard</a>
+        <a class="nav__link" href="#/proyectos">Proyectos</a>
+        <a class="nav__link" href="#/tareas">Tareas</a>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <div class="view" id="view-dashboard">
+        <header class="page-header">
+          <h1>Buenos días, <span id="user-name">Laura</span></h1>
+          <button class="btn" type="button">Nuevo proyecto</button>
+        </header>
+
+        <section class="stats" aria-label="Resumen">
+          <article class="card stat">
+            <p class="stat__value">3</p>
+            <p class="stat__label">Proyectos</p>
+          </article>
+          <article class="card stat">
+            <p class="stat__value">24</p>
+            <p class="stat__label">Tareas</p>
+          </article>
+          <article class="card stat">
+            <p class="stat__value">7</p>
+            <p class="stat__label">Pendientes</p>
+          </article>
+        </section>
+
+        <section aria-labelledby="activos">
+          <h2 id="activos">Proyectos activos</h2>
+          <div class="projects">
+
+            <article class="card project">
+              <div class="project__head">
+                <div>
+                  <h3>Nuvia</h3>
+                  <p class="muted">Tienda online</p>
+                </div>
+                <span class="badge badge--danger">Prioridad alta</span>
+              </div>
+              <div class="project__progress">
+                <div class="progress" role="progressbar" aria-label="Progreso de Nuvia" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                  <div class="progress__bar" style="--value: 75%"></div>
+                </div>
+                <span class="mono">75%</span>
+              </div>
+              <p class="project__meta">
+                <span>6 de 8 tareas</span>
+                <span>Vence el 15/10/2026</span>
+              </p>
+            </article>
+
+            <article class="card project">
+              <div class="project__head">
+                <div>
+                  <h3>Body &amp; Soul</h3>
+                  <p class="muted">Plataforma de reservas</p>
+                </div>
+                <span class="badge badge--warning">Prioridad media</span>
+              </div>
+              <div class="project__progress">
+                <div class="progress" role="progressbar" aria-label="Progreso de Body &amp; Soul" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100">
+                  <div class="progress__bar" style="--value: 86%"></div>
+                </div>
+                <span class="mono">86%</span>
+              </div>
+              <p class="project__meta">
+                <span>6 de 7 tareas</span>
+                <span>Vence el 30/10/2026</span>
+              </p>
+            </article>
+
+            <article class="card project">
+              <div class="project__head">
+                <div>
+                  <h3>Portfolio</h3>
+                  <p class="muted">Web personal</p>
+                </div>
+                <span class="badge">Prioridad baja</span>
+              </div>
+              <div class="project__progress">
+                <div class="progress" role="progressbar" aria-label="Progreso de Portfolio" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100">
+                  <div class="progress__bar" style="--value: 56%"></div>
+                </div>
+                <span class="mono">56%</span>
+              </div>
+              <p class="project__meta">
+                <span>5 de 9 tareas</span>
+                <span>Vence el 20/11/2026</span>
+              </p>
+            </article>
+
+          </div>
+        </section>
+      </div>
+
+      <div class="view" id="view-proyectos" hidden>
+        <header class="page-header">
+          <h1>Proyectos</h1>
+          <button class="btn" type="button">Nuevo proyecto</button>
+        </header>
+        <div class="projects">
+          <article class="card project">
+            <div class="project__head">
+              <div>
+                <h3>Nuvia</h3>
+                <p class="muted">Tienda online</p>
+              </div>
+              <div class="badges">
+                <span class="badge badge--accent">En desarrollo</span>
+                <span class="badge badge--danger">Alta</span>
+              </div>
+            </div>
+            <div class="project__progress">
+              <div class="progress" role="progressbar" aria-label="Progreso de Nuvia" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress__bar" style="--value: 75%"></div>
+              </div>
+              <span class="mono">75%</span>
+            </div>
+            <p class="project__meta">
+              <span>6 de 8 tareas</span>
+              <span>Vence el 15/10/2026</span>
+            </p>
+          </article>
+          <article class="card project">
+            <div class="project__head">
+              <div>
+                <h3>Body &amp; Soul</h3>
+                <p class="muted">Plataforma de reservas</p>
+              </div>
+              <div class="badges">
+                <span class="badge">En revisión</span>
+                <span class="badge badge--warning">Media</span>
+              </div>
+            </div>
+            <div class="project__progress">
+              <div class="progress" role="progressbar" aria-label="Progreso de Body &amp; Soul" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress__bar" style="--value: 86%"></div>
+              </div>
+              <span class="mono">86%</span>
+            </div>
+            <p class="project__meta">
+              <span>6 de 7 tareas</span>
+              <span>Vence el 30/10/2026</span>
+            </p>
+          </article>
+          <article class="card project">
+            <div class="project__head">
+              <div>
+                <h3>Portfolio</h3>
+                <p class="muted">Web personal</p>
+              </div>
+              <div class="badges">
+                <span class="badge badge--accent">En desarrollo</span>
+                <span class="badge">Baja</span>
+              </div>
+            </div>
+            <div class="project__progress">
+              <div class="progress" role="progressbar" aria-label="Progreso de Portfolio" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress__bar" style="--value: 56%"></div>
+              </div>
+              <span class="mono">56%</span>
+            </div>
+            <p class="project__meta">
+              <span>5 de 9 tareas</span>
+              <span>Vence el 20/11/2026</span>
+            </p>
+          </article>
+        </div>
+      </div>
+
+      <div class="view" id="view-tareas" hidden>
+        <header class="page-header">
+          <h1>Tareas</h1>
+          <button class="btn" type="button">Nueva tarea</button>
+        </header>
+        <div class="toolbar">
+          <input class="search" type="search" placeholder="Buscar tarea..." aria-label="Buscar tarea">
+          <div class="tabs" role="group" aria-label="Filtrar por estado">
+            <button class="tab is-active" type="button">Todas</button>
+            <button class="tab" type="button">Pendientes</button>
+            <button class="tab" type="button">En curso</button>
+            <button class="tab" type="button">Completadas</button>
+          </div>
+        </div>
+        <ul class="task-list">
+          <li class="task">
+            <label class="task__main">
+              <input type="checkbox">
+              <span class="task__title">Crear carrito</span>
+            </label>
+            <span class="muted">Nuvia</span>
+            <span class="badge badge--danger">Alta</span>
+            <span class="badge badge--accent">En curso</span>
+          </li>
+          <li class="task">
+            <label class="task__main">
+              <input type="checkbox">
+              <span class="task__title">Panel de administración</span>
+            </label>
+            <span class="muted">Nuvia</span>
+            <span class="badge badge--danger">Alta</span>
+            <span class="badge">Pendiente</span>
+          </li>
+          <li class="task">
+            <label class="task__main">
+              <input type="checkbox">
+              <span class="task__title">Revisar responsive</span>
+            </label>
+            <span class="muted">Nuvia</span>
+            <span class="badge badge--warning">Media</span>
+            <span class="badge">Pendiente</span>
+          </li>
+          <li class="task">
+            <label class="task__main">
+              <input type="checkbox" checked>
+              <span class="task__title">Crear catálogo</span>
+            </label>
+            <span class="muted">Nuvia</span>
+            <span class="badge badge--danger">Alta</span>
+            <span class="badge badge--success">Completada</span>
+          </li>
+          <li class="task">
+            <label class="task__main">
+              <input type="checkbox" checked>
+              <span class="task__title">Configurar base de datos</span>
+            </label>
+            <span class="muted">Nuvia</span>
+            <span class="badge badge--danger">Alta</span>
+            <span class="badge badge--success">Completada</span>
+          </li>
+          <li class="task">
+            <label class="task__main">
+              <input type="checkbox">
+              <span class="task__title">Integrar pasarela de pago</span>
+            </label>
+            <span class="muted">Body &amp; Soul</span>
+            <span class="badge badge--warning">Media</span>
+            <span class="badge badge--accent">En curso</span>
+          </li>
+          <li class="task">
+            <label class="task__main">
+              <input type="checkbox">
+              <span class="task__title">Sección de contacto</span>
+            </label>
+            <span class="muted">Portfolio</span>
+            <span class="badge">Baja</span>
+            <span class="badge">Pendiente</span>
+          </li>
+        </ul>
+      </div>
+    </main>
+
+  </div>
+  <script src="main.js" defer></script>
+</body>
+</html>

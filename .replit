@@ -3,3 +3,18 @@ channel = "stable-25_05"
 
 [agent]
 expertMode = true
+
+[workflows]
+
+[[workflows.workflow]]
+name = "run"
+mode = "sequential"
+author = 65562387
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python3 -m http.server 5000"
+
+[[ports]]
+localPort = 5000
+externalPort = 80
