@@ -1,4 +1,3 @@
-```css
 /* ==========================================================
    1. Variables
    ========================================================== */
@@ -621,4 +620,122 @@ a {
     flex: 1 1 100%;
   }
 }
-```
+
+/* ==========================================================
+   13. Modal y formularios
+   ========================================================== */
+
+.modal {
+  width: min(440px, calc(100% - 32px));
+  padding: 24px;
+
+  background: var(--superficie);
+  color: var(--texto);
+
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+}
+
+.modal::backdrop {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  color: var(--texto-secundario);
+  font-size: 0.875rem;
+}
+
+.campo input,
+.campo select {
+  padding: 9px 12px;
+
+  background: var(--superficie-secundaria);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-pequeno);
+
+  color: var(--texto);
+  font: inherit;
+}
+
+.campos-fila {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.acciones-formulario {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.boton-secundario {
+  background: transparent;
+  border: 1px solid var(--borde);
+  color: var(--texto-secundario);
+}
+
+.boton-secundario:hover {
+  background: var(--superficie-secundaria);
+  color: var(--texto);
+}
+
+/* ==========================================================
+   14. Acciones de cada tarea (Editar / Borrar)
+   ========================================================== */
+
+/* Añade una columna para los botones */
+.tarea {
+  grid-template-columns: 1fr 130px 70px 100px auto;
+}
+
+.acciones-tarea {
+  display: flex;
+  gap: 4px;
+  justify-self: end;
+}
+
+.boton-texto {
+  padding: 4px 8px;
+
+  border: 0;
+  border-radius: 6px;
+
+  background: transparent;
+  color: var(--texto-secundario);
+
+  font: 500 0.8125rem var(--fuente-interfaz);
+
+  cursor: pointer;
+
+  transition:
+    background 150ms,
+    color 150ms;
+}
+
+.boton-texto:hover {
+  background: var(--superficie-secundaria);
+  color: var(--texto);
+}
+
+.boton-texto--peligro:hover {
+  color: var(--peligro);
+}
+
+@media (max-width: 700px) {
+  .acciones-tarea {
+    margin-left: auto;
+  }
+}
+

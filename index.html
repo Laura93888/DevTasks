@@ -1,274 +1,261 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title>DevFlow</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  >
+
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
+
   <div class="principal">
 
-    <aside class="barralateral">
-      <a class="logo" href="#/dashboard">DevFlow</a>
-      <nav class="nav" aria-label="Principal">
-        <a class="nav__link is-active" href="#/dashboard" aria-current="page">Dashboard</a>
-        <a class="nav__link" href="#/proyectos">Proyectos</a>
-        <a class="nav__link" href="#/tareas">Tareas</a>
+    <!-- Menú lateral -->
+    <aside class="barra-lateral">
+
+      <a class="logo" href="#/panel">DevFlow</a>
+
+      <nav class="navegacion" aria-label="Navegación principal">
+        <a class="enlace-navegacion activo" href="#/panel" aria-current="page">
+          Panel
+        </a>
+
+        <a class="enlace-navegacion" href="#/proyectos">
+          Proyectos
+        </a>
+
+        <a class="enlace-navegacion" href="#/tareas">
+          Tareas
+        </a>
       </nav>
+
     </aside>
 
-    <main class="content">
-      <div class="view" id="view-dashboard">
-        <header class="page-header">
-          <h1>Buenos días, <span id="user-name">Laura</span></h1>
-          <button class="btn" type="button">Nuevo proyecto</button>
+
+    <!-- Contenido principal -->
+    <main class="contenido">
+
+      <!-- PANEL -->
+      <div class="vista" id="vista-panel">
+
+        <header class="cabecera-pagina">
+          <h1>
+            Buenos días,
+            <span id="nombre-usuario">Laura</span>
+          </h1>
+
+          <button class="boton" type="button">
+            Nuevo proyecto
+          </button>
         </header>
 
-        <section class="stats" aria-label="Resumen">
-          <article class="card stat">
-            <p class="stat__value">3</p>
-            <p class="stat__label">Proyectos</p>
+
+        <!-- Resumen -->
+        <section class="estadisticas" aria-label="Resumen">
+
+          <article class="tarjeta estadistica">
+            <p class="valor-estadistica" id="total-proyectos">0</p>
+            <p class="etiqueta-estadistica">Proyectos</p>
           </article>
-          <article class="card stat">
-            <p class="stat__value">24</p>
-            <p class="stat__label">Tareas</p>
+
+          <article class="tarjeta estadistica">
+            <p class="valor-estadistica" id="total-tareas">0</p>
+            <p class="etiqueta-estadistica">Tareas</p>
           </article>
-          <article class="card stat">
-            <p class="stat__value">7</p>
-            <p class="stat__label">Pendientes</p>
+
+          <article class="tarjeta estadistica">
+            <p class="valor-estadistica" id="total-pendientes">0</p>
+            <p class="etiqueta-estadistica">Pendientes</p>
           </article>
+
         </section>
 
-        <section aria-labelledby="activos">
-          <h2 id="activos">Proyectos activos</h2>
-          <div class="projects">
 
-            <article class="card project">
-              <div class="project__head">
-                <div>
-                  <h3>Nuvia</h3>
-                  <p class="muted">Tienda online</p>
-                </div>
-                <span class="badge badge--danger">Prioridad alta</span>
-              </div>
-              <div class="project__progress">
-                <div class="progress" role="progressbar" aria-label="Progreso de Nuvia" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-                  <div class="progress__bar" style="--value: 75%"></div>
-                </div>
-                <span class="mono">75%</span>
-              </div>
-              <p class="project__meta">
-                <span>6 de 8 tareas</span>
-                <span>Vence el 15/10/2026</span>
-              </p>
-            </article>
+        <!-- Proyectos activos -->
+        <section aria-labelledby="proyectos-activos">
 
-            <article class="card project">
-              <div class="project__head">
-                <div>
-                  <h3>Body &amp; Soul</h3>
-                  <p class="muted">Plataforma de reservas</p>
-                </div>
-                <span class="badge badge--warning">Prioridad media</span>
-              </div>
-              <div class="project__progress">
-                <div class="progress" role="progressbar" aria-label="Progreso de Body &amp; Soul" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100">
-                  <div class="progress__bar" style="--value: 86%"></div>
-                </div>
-                <span class="mono">86%</span>
-              </div>
-              <p class="project__meta">
-                <span>6 de 7 tareas</span>
-                <span>Vence el 30/10/2026</span>
-              </p>
-            </article>
+          <h2 id="proyectos-activos">
+            Proyectos activos
+          </h2>
 
-            <article class="card project">
-              <div class="project__head">
-                <div>
-                  <h3>Portfolio</h3>
-                  <p class="muted">Web personal</p>
-                </div>
-                <span class="badge">Prioridad baja</span>
-              </div>
-              <div class="project__progress">
-                <div class="progress" role="progressbar" aria-label="Progreso de Portfolio" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100">
-                  <div class="progress__bar" style="--value: 56%"></div>
-                </div>
-                <span class="mono">56%</span>
-              </div>
-              <p class="project__meta">
-                <span>5 de 9 tareas</span>
-                <span>Vence el 20/11/2026</span>
-              </p>
-            </article>
+          <div class="proyectos" id="lista-proyectos-activos">
+
+            <!-- Los proyectos se generan desde JavaScript -->
 
           </div>
+
         </section>
+
       </div>
 
-      <div class="view" id="view-proyectos" hidden>
-        <header class="page-header">
+
+      <!-- PROYECTOS -->
+      <div class="vista" id="vista-proyectos" hidden>
+
+        <header class="cabecera-pagina">
+
           <h1>Proyectos</h1>
-          <button class="btn" type="button">Nuevo proyecto</button>
+
+          <button class="boton" type="button">
+            Nuevo proyecto
+          </button>
+
         </header>
-        <div class="projects" id="projects-list">
-          <article class="card project">
-            <div class="project__head">
-              <div>
-                <h3>Nuvia</h3>
-                <p class="muted">Tienda online</p>
-              </div>
-              <div class="badges">
-                <span class="badge badge--accent">En desarrollo</span>
-                <span class="badge badge--danger">Alta</span>
-              </div>
-            </div>
-            <div class="project__progress">
-              <div class="progress" role="progressbar" aria-label="Progreso de Nuvia" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-                <div class="progress__bar" style="--value: 75%"></div>
-              </div>
-              <span class="mono">75%</span>
-            </div>
-            <p class="project__meta">
-              <span>6 de 8 tareas</span>
-              <span>Vence el 15/10/2026</span>
-            </p>
-          </article>
-          <article class="card project">
-            <div class="project__head">
-              <div>
-                <h3>Body &amp; Soul</h3>
-                <p class="muted">Plataforma de reservas</p>
-              </div>
-              <div class="badges">
-                <span class="badge">En revisión</span>
-                <span class="badge badge--warning">Media</span>
-              </div>
-            </div>
-            <div class="project__progress">
-              <div class="progress" role="progressbar" aria-label="Progreso de Body &amp; Soul" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100">
-                <div class="progress__bar" style="--value: 86%"></div>
-              </div>
-              <span class="mono">86%</span>
-            </div>
-            <p class="project__meta">
-              <span>6 de 7 tareas</span>
-              <span>Vence el 30/10/2026</span>
-            </p>
-          </article>
-          <article class="card project">
-            <div class="project__head">
-              <div>
-                <h3>Portfolio</h3>
-                <p class="muted">Web personal</p>
-              </div>
-              <div class="badges">
-                <span class="badge badge--accent">En desarrollo</span>
-                <span class="badge">Baja</span>
-              </div>
-            </div>
-            <div class="project__progress">
-              <div class="progress" role="progressbar" aria-label="Progreso de Portfolio" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100">
-                <div class="progress__bar" style="--value: 56%"></div>
-              </div>
-              <span class="mono">56%</span>
-            </div>
-            <p class="project__meta">
-              <span>5 de 9 tareas</span>
-              <span>Vence el 20/11/2026</span>
-            </p>
-          </article>
+
+
+        <div class="proyectos" id="lista-proyectos">
+
+          <!-- Los proyectos se generan desde JavaScript -->
+
         </div>
+
       </div>
 
-      <div class="view" id="view-tareas" hidden>
-        <header class="page-header">
+
+      <!-- TAREAS -->
+      <div class="vista" id="vista-tareas" hidden>
+
+        <header class="cabecera-pagina">
+
           <h1>Tareas</h1>
-          <button class="btn" type="button">Nueva tarea</button>
+
+          <button class="boton" type="button" id="abrir-modal-tarea">
+            Nueva tarea
+          </button>
+
         </header>
-        <div class="toolbar">
-          <input class="search" type="search" placeholder="Buscar tarea..." aria-label="Buscar tarea">
-          <div class="tabs" role="group" aria-label="Filtrar por estado">
-            <button class="tab is-active" type="button">Todas</button>
-            <button class="tab" type="button">Pendientes</button>
-            <button class="tab" type="button">En curso</button>
-            <button class="tab" type="button">Completadas</button>
+
+
+        <!-- Buscador y filtros -->
+        <div class="barra-herramientas">
+
+          <input
+            class="buscador"
+            id="buscador-tareas"
+            type="search"
+            placeholder="Buscar tarea..."
+            aria-label="Buscar tarea"
+          >
+
+
+          <div
+            class="pestanas"
+            role="group"
+            aria-label="Filtrar por estado"
+          >
+
+            <button class="pestana activa" type="button" data-filtro="todas" aria-pressed="true">
+              Todas
+            </button>
+
+            <button class="pestana" type="button" data-filtro="pendiente" aria-pressed="false">
+              Pendientes
+            </button>
+
+            <button class="pestana" type="button" data-filtro="en-curso" aria-pressed="false">
+              En curso
+            </button>
+
+            <button class="pestana" type="button" data-filtro="completada" aria-pressed="false">
+              Completadas
+            </button>
+
           </div>
+
         </div>
-        <ul class="task-list">
-          <li class="task">
-            <label class="task__main">
-              <input type="checkbox">
-              <span class="task__title">Crear carrito</span>
-            </label>
-            <span class="muted">Nuvia</span>
-            <span class="badge badge--danger">Alta</span>
-            <span class="badge badge--accent">En curso</span>
-          </li>
-          <li class="task">
-            <label class="task__main">
-              <input type="checkbox">
-              <span class="task__title">Panel de administración</span>
-            </label>
-            <span class="muted">Nuvia</span>
-            <span class="badge badge--danger">Alta</span>
-            <span class="badge">Pendiente</span>
-          </li>
-          <li class="task">
-            <label class="task__main">
-              <input type="checkbox">
-              <span class="task__title">Revisar responsive</span>
-            </label>
-            <span class="muted">Nuvia</span>
-            <span class="badge badge--warning">Media</span>
-            <span class="badge">Pendiente</span>
-          </li>
-          <li class="task">
-            <label class="task__main">
-              <input type="checkbox" checked>
-              <span class="task__title">Crear catálogo</span>
-            </label>
-            <span class="muted">Nuvia</span>
-            <span class="badge badge--danger">Alta</span>
-            <span class="badge badge--success">Completada</span>
-          </li>
-          <li class="task">
-            <label class="task__main">
-              <input type="checkbox" checked>
-              <span class="task__title">Configurar base de datos</span>
-            </label>
-            <span class="muted">Nuvia</span>
-            <span class="badge badge--danger">Alta</span>
-            <span class="badge badge--success">Completada</span>
-          </li>
-          <li class="task">
-            <label class="task__main">
-              <input type="checkbox">
-              <span class="task__title">Integrar pasarela de pago</span>
-            </label>
-            <span class="muted">Body &amp; Soul</span>
-            <span class="badge badge--warning">Media</span>
-            <span class="badge badge--accent">En curso</span>
-          </li>
-          <li class="task">
-            <label class="task__main">
-              <input type="checkbox">
-              <span class="task__title">Sección de contacto</span>
-            </label>
-            <span class="muted">Portfolio</span>
-            <span class="badge">Baja</span>
-            <span class="badge">Pendiente</span>
-          </li>
+
+
+        <!-- Lista de tareas -->
+        <ul class="lista-tareas" id="lista-tareas">
+
+          <!-- Las tareas se generan desde JavaScript -->
+
         </ul>
+
       </div>
+
     </main>
 
   </div>
+
+
+  <!-- Modal: nueva tarea -->
+  <dialog class="modal" id="modal-tarea">
+    <form class="formulario" id="formulario-tarea">
+
+      <h2 id="titulo-modal-tarea">Nueva tarea</h2>
+
+      <label class="campo">
+        <span>Título</span>
+        <input type="text" name="titulo" required maxlength="80">
+      </label>
+
+      <label class="campo">
+        <span>Proyecto</span>
+        <select name="proyectoId" required></select>
+      </label>
+
+      <div class="campos-fila">
+
+        <label class="campo">
+          <span>Prioridad</span>
+          <select name="prioridad">
+            <option value="alta">Alta</option>
+            <option value="media" selected>Media</option>
+            <option value="baja">Baja</option>
+          </select>
+        </label>
+
+        <label class="campo">
+          <span>Estado</span>
+          <select name="estado">
+            <option value="pendiente" selected>Pendiente</option>
+            <option value="en-curso">En curso</option>
+            <option value="completada">Completada</option>
+          </select>
+        </label>
+
+      </div>
+
+      <div class="acciones-formulario">
+        <button class="boton boton-secundario" type="button" id="cancelar-tarea">Cancelar</button>
+        <button class="boton" type="submit" id="boton-guardar-tarea">Crear tarea</button>
+      </div>
+
+    </form>
+  </dialog>
+
+
+  <!-- Modal: confirmar borrado de tarea -->
+  <dialog class="modal modal--confirmar" id="modal-borrar">
+    <div class="formulario">
+
+      <h2>Borrar tarea</h2>
+
+      <p class="texto-secundario" id="texto-borrar"></p>
+
+      <div class="acciones-formulario">
+        <button class="boton boton-secundario" type="button" id="cancelar-borrar">Cancelar</button>
+        <button class="boton boton-peligro" type="button" id="confirmar-borrar">Borrar</button>
+      </div>
+
+    </div>
+  </dialog>
+
+
   <script type="module" src="main.js"></script>
+
 </body>
 </html>
