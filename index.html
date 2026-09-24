@@ -10,9 +10,9 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="app">
+  <div class="principal">
 
-    <aside class="sidebar">
+    <aside class="barralateral">
       <a class="logo" href="#/dashboard">DevFlow</a>
       <nav class="nav" aria-label="Principal">
         <a class="nav__link is-active" href="#/dashboard" aria-current="page">Dashboard</a>
@@ -116,7 +116,7 @@
           <h1>Proyectos</h1>
           <button class="btn" type="button">Nuevo proyecto</button>
         </header>
-        <div class="projects">
+        <div class="projects" id="projects-list">
           <article class="card project">
             <div class="project__head">
               <div>
@@ -269,6 +269,6 @@
     </main>
 
   </div>
-  <script src="main.js" defer></script>
+  <script type="module" src="main.js"></script>
 </body>
 </html>

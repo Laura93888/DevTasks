@@ -1,39 +1,44 @@
+```css
 /* ==========================================================
-   1. Variables (cambia aquí los colores y afecta a toda la app)
+   1. Variables
    ========================================================== */
+
 :root {
-  /* capas */
-  --bg: #09090b;
-  --surface: #111113;
-  --surface-2: #18181b;
-  --border: #27272a;
-  --border-hover: #3f3f46;
 
-  /* texto */
-  --text: #e4e4e7;
-  --text-muted: #a1a1aa;
+  /* Colores de fondo y superficies */
+  --fondo: #09090b;
+  --superficie: #111113;
+  --superficie-secundaria: #18181b;
+  --borde: #27272a;
+  --borde-hover: #3f3f46;
 
-  /* acento */
-  --accent: #6d5cf0;
-  --accent-hover: #7c6cff;
+  /* Texto */
+  --texto: #e4e4e7;
+  --texto-secundario: #a1a1aa;
 
-  /* estados */
-  --success: #22c55e;
-  --warning: #f59e0b;
-  --danger: #ef4444;
+  /* Color principal */
+  --acento: #6d5cf0;
+  --acento-hover: #7c6cff;
 
-  /* forma */
-  --radius: 12px;
-  --radius-sm: 8px;
+  /* Estados */
+  --correcto: #22c55e;
+  --advertencia: #f59e0b;
+  --peligro: #ef4444;
 
-  /* tipografía */
-  --font-ui: "Inter", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  /* Bordes redondeados */
+  --radio: 12px;
+  --radio-pequeno: 8px;
+
+  /* Tipografías */
+  --fuente-interfaz: "Inter", system-ui, sans-serif;
+  --fuente-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
+
 /* ==========================================================
-   2. Base
+   2. Estilos generales
    ========================================================== */
+
 *,
 *::before,
 *::after {
@@ -42,327 +47,578 @@
 
 body {
   margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font: 400 15px/1.5 var(--font-ui);
+  background: var(--fondo);
+  color: var(--texto);
+  font: 400 15px/1.5 var(--fuente-interfaz);
 }
 
-h1, h2, h3, p {
+h1,
+h2,
+h3,
+p {
   margin: 0;
 }
 
-h1 { font-size: 1.625rem; font-weight: 600; letter-spacing: -0.02em; }
-h2 { font-size: 1rem; font-weight: 600; margin-bottom: 16px; }
-h3 { font-size: 1rem; font-weight: 600; }
+h1 {
+  font-size: 1.625rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
 
-a { color: inherit; text-decoration: none; }
+h2 {
+  margin-bottom: 16px;
+  font-size: 1rem;
+  font-weight: 600;
+}
 
-.muted { color: var(--text-muted); font-size: 0.875rem; }
-.mono  { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--text-muted); }
+h3 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* Textos auxiliares */
+
+.texto-secundario {
+  color: var(--texto-secundario);
+  font-size: 0.875rem;
+}
+
+.monoespaciado {
+  color: var(--texto-secundario);
+  font-family: var(--fuente-mono);
+  font-size: 0.8125rem;
+}
+
+
+/* Accesibilidad: indicador de foco */
 
 :focus-visible {
-  outline: 2px solid var(--accent-hover);
+  outline: 2px solid var(--acento-hover);
   outline-offset: 2px;
 }
 
+
 /* ==========================================================
-   3. Layout: sidebar + contenido
+   3. Estructura: barra lateral + contenido
    ========================================================== */
-.app {
+
+.principal {
   display: grid;
   grid-template-columns: 240px 1fr;
   min-height: 100vh;
 }
 
-.sidebar {
+
+/* Barra lateral */
+
+.barra-lateral {
   position: sticky;
   top: 0;
-  height: 100vh;
+
   display: flex;
   flex-direction: column;
   gap: 32px;
+
+  height: 100vh;
   padding: 24px 16px;
-  background: var(--surface);
-  border-right: 1px solid var(--border);
+
+  background: var(--superficie);
+  border-right: 1px solid var(--borde);
 }
+
+
+/* Logo */
 
 .logo {
   padding: 0 12px;
+
   font-size: 1.125rem;
   font-weight: 600;
   letter-spacing: -0.02em;
 }
 
-.nav {
+
+/* Navegación */
+
+.navegacion {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-.nav__link {
+.enlace-navegacion {
   padding: 8px 12px;
-  border-radius: var(--radius-sm);
-  color: var(--text-muted);
-  transition: background 150ms, color 150ms;
+
+  border-radius: var(--radio-pequeno);
+
+  color: var(--texto-secundario);
+
+  transition:
+    background 150ms,
+    color 150ms;
 }
 
-.nav__link:hover {
-  background: var(--surface-2);
-  color: var(--text);
+.enlace-navegacion:hover {
+  background: var(--superficie-secundaria);
+  color: var(--texto);
 }
 
-.nav__link.is-active {
-  background: var(--surface-2);
-  color: var(--text);
-  box-shadow: inset 2px 0 0 var(--accent);
+.enlace-navegacion.activo {
+  background: var(--superficie-secundaria);
+  color: var(--texto);
+  box-shadow: inset 2px 0 0 var(--acento);
 }
 
-.content {
+
+/* Contenido */
+
+.contenido {
   width: 100%;
   max-width: 1080px;
   padding: 40px 48px;
 }
 
-.page-header {
+
+/* Cabecera de cada página */
+
+.cabecera-pagina {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   gap: 16px;
   margin-bottom: 32px;
 }
 
+
 /* ==========================================================
-   4. Componentes
+   4. Componentes generales
    ========================================================== */
-.btn {
+
+
+/* Botones */
+
+.boton {
   padding: 9px 16px;
+
   border: 0;
-  border-radius: var(--radius-sm);
-  background: var(--accent);
+  border-radius: var(--radio-pequeno);
+
+  background: var(--acento);
   color: #fff;
-  font: 500 0.875rem var(--font-ui);
+
+  font: 500 0.875rem var(--fuente-interfaz);
+
   cursor: pointer;
+
   transition: background 150ms;
 }
 
-.btn:hover { background: var(--accent-hover); }
+.boton:hover {
+  background: var(--acento-hover);
+}
 
-.card {
+
+/* Tarjetas */
+
+.tarjeta {
   padding: 20px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+
   transition: border-color 150ms;
 }
 
-.card:hover { border-color: var(--border-hover); }
+.tarjeta:hover {
+  border-color: var(--borde-hover);
+}
 
-/* Resumen */
-.stats {
+
+/* ==========================================================
+   5. Resumen
+   ========================================================== */
+
+.estadisticas {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+
   gap: 16px;
   margin-bottom: 40px;
 }
 
-.stat__value {
-  font: 500 2rem/1.2 var(--font-mono);
+.valor-estadistica {
+  font: 500 2rem/1.2 var(--fuente-mono);
 }
 
-.stat__label {
-  color: var(--text-muted);
+.etiqueta-estadistica {
+  color: var(--texto-secundario);
   font-size: 0.875rem;
 }
 
-/* Proyectos */
-.projects {
+
+/* ==========================================================
+   6. Proyectos
+   ========================================================== */
+
+.proyectos {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+
   gap: 16px;
 }
 
-.project__head {
+
+/* Cabecera del proyecto */
+
+.cabecera-proyecto {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+
   gap: 12px;
 }
 
-.project__progress {
+
+/* Progreso */
+
+.progreso-proyecto {
   display: flex;
   align-items: center;
+
   gap: 12px;
   margin-top: 24px;
 }
 
-.project__meta {
+
+/* Información inferior del proyecto */
+
+.informacion-proyecto {
   display: flex;
   justify-content: space-between;
+
   gap: 12px;
   margin-top: 14px;
-  color: var(--text-muted);
+
+  color: var(--texto-secundario);
   font-size: 0.8125rem;
 }
 
-/* Barra de progreso: el ancho viene de la variable --value */
-.progress {
+
+/* Barra de progreso */
+
+.barra-progreso {
   flex: 1;
+
   height: 6px;
-  background: var(--surface-2);
+
+  background: var(--superficie-secundaria);
   border-radius: 999px;
+
   overflow: hidden;
 }
 
-.progress__bar {
-  width: var(--value, 0%);
+
+/*
+  El ancho de la barra se obtiene de la variable
+  --valor que se establece desde JavaScript.
+*/
+
+.barra-progreso__relleno {
+  width: var(--valor, 0%);
   height: 100%;
-  background: var(--accent);
+
+  background: var(--acento);
   border-radius: 999px;
 }
 
-/* Badges: el color se cambia con --c */
-.badge {
-  --c: var(--text-muted);
+
+/* ==========================================================
+   7. Etiquetas
+   ========================================================== */
+
+.etiqueta {
+  --color-etiqueta: var(--texto-secundario);
+
   flex-shrink: 0;
+
   padding: 2px 10px;
+
   border-radius: 999px;
-  background: color-mix(in srgb, var(--c) 14%, transparent);
-  color: var(--c);
+
+  background: color-mix(
+    in srgb,
+    var(--color-etiqueta) 14%,
+    transparent
+  );
+
+  color: var(--color-etiqueta);
+
   font-size: 0.75rem;
   font-weight: 500;
 }
 
-.badge--danger  { --c: var(--danger); }
-.badge--warning { --c: var(--warning); }
-.badge--success { --c: var(--success); }
 
-/* ==========================================================
-   5. Responsive
-   ========================================================== */
-@media (max-width: 800px) {
-  .app { grid-template-columns: 1fr; }
+/* Colores de las etiquetas */
 
-  .sidebar {
-    position: static;
-    height: auto;
-    flex-direction: row;
-    align-items: center;
-    gap: 16px;
-    padding: 12px 16px;
-    border-right: 0;
-    border-bottom: 1px solid var(--border);
-    overflow-x: auto;
-  }
-
-  .nav { flex-direction: row; }
-  .content { padding: 24px 20px; }
+.etiqueta--peligro {
+  --color-etiqueta: var(--peligro);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  * { transition: none !important; }
+.etiqueta--advertencia {
+  --color-etiqueta: var(--advertencia);
 }
 
-/* ==========================================================
-   6. Vistas: proyectos y tareas
-   ========================================================== */
-.badges {
+.etiqueta--correcto {
+  --color-etiqueta: var(--correcto);
+}
+
+.etiqueta--acento {
+  --color-etiqueta: var(--acento-hover);
+}
+
+
+/* Varias etiquetas juntas */
+
+.etiquetas {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
+
   gap: 6px;
 }
 
-.badge--accent { --c: var(--accent-hover); }
 
-.toolbar {
+/* ==========================================================
+   8. Barra de herramientas y filtros
+   ========================================================== */
+
+.barra-herramientas {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+
   gap: 12px;
   margin-bottom: 16px;
 }
 
-.search {
+
+/* Buscador */
+
+.buscador {
   flex: 1;
+
   min-width: 200px;
   max-width: 320px;
+
   padding: 9px 12px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  color: var(--text);
+
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-pequeno);
+
+  color: var(--texto);
+
   font: inherit;
   font-size: 0.875rem;
 }
 
-.search::placeholder { color: var(--text-muted); }
+.buscador::placeholder {
+  color: var(--texto-secundario);
+}
 
-.tabs {
+
+/* ==========================================================
+   9. Pestañas
+   ========================================================== */
+
+.pestanas {
   display: flex;
+
   gap: 4px;
   padding: 4px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
+
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-pequeno);
 }
 
-.tab {
+.pestana {
   padding: 6px 12px;
+
   border: 0;
   border-radius: 6px;
+
   background: transparent;
-  color: var(--text-muted);
-  font: 500 0.8125rem var(--font-ui);
+  color: var(--texto-secundario);
+
+  font: 500 0.8125rem var(--fuente-interfaz);
+
   cursor: pointer;
-  transition: background 150ms, color 150ms;
+
+  transition:
+    background 150ms,
+    color 150ms;
 }
 
-.tab:hover { color: var(--text); }
-.tab.is-active { background: var(--surface-2); color: var(--text); }
+.pestana:hover {
+  color: var(--texto);
+}
 
-.task-list {
+.pestana.activa {
+  background: var(--superficie-secundaria);
+  color: var(--texto);
+}
+
+
+/* ==========================================================
+   10. Lista de tareas
+   ========================================================== */
+
+.lista-tareas {
   margin: 0;
   padding: 0;
+
   list-style: none;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
 }
 
-.task {
+
+/* Cada tarea */
+
+.tarea {
   display: grid;
   grid-template-columns: 1fr 130px 70px 100px;
+
   align-items: center;
+
   gap: 16px;
   padding: 14px 20px;
-  border-bottom: 1px solid var(--border);
+
+  border-bottom: 1px solid var(--borde);
 }
 
-.task:last-child { border-bottom: 0; }
-.task .badge { justify-self: start; }
+.tarea:last-child {
+  border-bottom: 0;
+}
 
-.task__main {
+
+/* Etiquetas dentro de una tarea */
+
+.tarea .etiqueta {
+  justify-self: start;
+}
+
+
+/* Parte principal de la tarea */
+
+.contenido-tarea {
   display: flex;
   align-items: center;
+
   gap: 12px;
+
   cursor: pointer;
 }
 
-.task__main input {
+
+/* Checkbox */
+
+.contenido-tarea input {
   width: 16px;
   height: 16px;
-  accent-color: var(--accent);
+
+  accent-color: var(--acento);
+
   cursor: pointer;
 }
 
-/* Tachado sin JavaScript: :has() detecta si el checkbox está marcado */
-.task:has(input:checked) .task__title {
-  color: var(--text-muted);
+
+/*
+  Si la tarea está marcada, se tacha el título.
+  No necesitamos JavaScript para esto.
+*/
+
+.tarea:has(input:checked) .titulo-tarea {
+  color: var(--texto-secundario);
   text-decoration: line-through;
 }
 
-@media (max-width: 700px) {
-  .task { display: flex; flex-wrap: wrap; gap: 8px 12px; }
-  .task__main { flex: 1 1 100%; }
+
+/* ==========================================================
+   11. Responsive
+   ========================================================== */
+
+@media (max-width: 800px) {
+
+  .principal {
+    grid-template-columns: 1fr;
+  }
+
+  .barra-lateral {
+    position: static;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    height: auto;
+
+    gap: 16px;
+    padding: 12px 16px;
+
+    border-right: 0;
+    border-bottom: 1px solid var(--borde);
+
+    overflow-x: auto;
+  }
+
+  .navegacion {
+    flex-direction: row;
+  }
+
+  .contenido {
+    padding: 24px 20px;
+  }
 }
+
+
+/* Reducir animaciones si el usuario lo solicita */
+
+@media (prefers-reduced-motion: reduce) {
+
+  * {
+    transition: none !important;
+  }
+}
+
+
+/* ==========================================================
+   12. Responsive para tareas
+   ========================================================== */
+
+@media (max-width: 700px) {
+
+  .tarea {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 8px 12px;
+  }
+
+  .contenido-tarea {
+    flex: 1 1 100%;
+  }
+}
+```
