@@ -201,6 +201,24 @@ function crearTarjeta(proyecto) {
         <span>Vence el ${formatearFecha(proyecto.fechaLimite)}</span>
       </p>
 
+      <div class="acciones-proyecto">
+        <button
+          class="boton-texto"
+          type="button"
+          data-accion="editar-proyecto"
+          data-id="${proyecto.id}"
+          aria-label="Editar proyecto ${escaparHTML(proyecto.nombre)}"
+        >Editar</button>
+
+        <button
+          class="boton-texto boton-texto--peligro"
+          type="button"
+          data-accion="borrar-proyecto"
+          data-id="${proyecto.id}"
+          aria-label="Borrar proyecto ${escaparHTML(proyecto.nombre)}"
+        >Borrar</button>
+      </div>
+
     </article>
   `;
 }
@@ -471,12 +489,21 @@ document.getElementById("cancelar-borrar").addEventListener("click", () => {
 });
 
 document.getElementById("confirmar-borrar").addEventListener("click", () => {
-  tareas = tareas.filter((t) => t.id !== idTareaPorBorrar);
-  idTareaPorBorrar = null;
+  if (tipoElementoPorBorrar === "tarea") {
+    tareas = tareas.filter((t) => t.id !== idElementoPorBorrar);
+  } else if (tipoElementoPorBorrar === "proyecto") {
+    proyectos = proyectos.filter((p) => p.id !== idElementoPorBorrar);
+    // Borramos también las tareas asociadas a este proyecto
+    tareas = tareas.filter((t) => t.proyectoId !== idElementoPorBorrar);
+  }
+
+  // Limpiamos variables
+  idElementoPorBorrar = null;
+  tipoElementoPorBorrar = null;
 
   guardarDatos();
   pintarTodo();
-  modalBorrar.close();
+  document.getElementById("modal-borrar").close();
 });
 
 
@@ -504,6 +531,115 @@ document.querySelector(".pestanas").addEventListener("click", (evento) => {
 
   pintarTareas();
 });
+
+// ==========================================================
+// Modal: crear y editar proyectos
+// ==========================================================
+
+const modalProyecto = document.getElementById("modal-proyecto");
+const formularioProyecto = document.getElementById("formulario-proyecto");
+
+// null = estamos creando; con un id = estamos editando ese proyecto
+let idProyectoEnEdicion = null;
+
+function abrirModalProyecto(proyecto = null) {
+  idProyectoEnEdicion = proyecto ? proyecto.id : null;
+
+  formularioProyecto.reset();
+
+  if (proyecto) {
+    formularioProyecto.elements.nombre.value = proyecto.nombre;
+    formularioProyecto.elements.descripcion.value = proyecto.descripcion;
+    formularioProyecto.elements.cliente.value = proyecto.cliente;
+    formularioProyecto.elements.estado.value = proyecto.estado;
+    formularioProyecto.elements.prioridad.value = proyecto.prioridad;
+    formularioProyecto.elements.fechaLimite.value = proyecto.fechaLimite;
+  }
+
+  document.getElementById("titulo-modal-proyecto").textContent =
+    proyecto ? "Editar proyecto" : "Nuevo proyecto";
+
+  document.getElementById("boton-guardar-proyecto").textContent =
+    proyecto ? "Guardar cambios" : "Crear proyecto";
+
+  modalProyecto.showModal();
+}
+
+// Botones para abrir el modal desde el Panel o desde Proyectos
+document.getElementById("abrir-modal-proyecto")?.addEventListener("click", () => {
+  abrirModalProyecto();
+});
+
+document.getElementById("abrir-modal-proyecto-panel")?.addEventListener("click", () => {
+  abrirModalProyecto();
+});
+
+document.getElementById("cancelar-proyecto").addEventListener("click", () => {
+  modalProyecto.close();
+});
+
+formularioProyecto.addEventListener("submit", (evento) => {
+  evento.preventDefault();
+
+  const datosFormulario = new FormData(formularioProyecto);
+  const nombre = datosFormulario.get("nombre").trim();
+  if (!nombre) return;
+
+  const valores = {
+    nombre: nombre,
+    descripcion: datosFormulario.get("descripcion").trim(),
+    cliente: datosFormulario.get("cliente").trim(),
+    estado: datosFormulario.get("estado"),
+    prioridad: datosFormulario.get("prioridad"),
+    fechaLimite: datosFormulario.get("fechaLimite")
+  };
+
+  if (idProyectoEnEdicion) {
+    // Editar: actualizamos el proyecto existente
+    const proyecto = proyectos.find((p) => p.id === idProyectoEnEdicion);
+    Object.assign(proyecto, valores);
+  } else {
+    // Crear: añadimos un proyecto nuevo
+    proyectos.push({ id: crypto.randomUUID(), ...valores });
+  }
+
+  guardarDatos();
+  pintarTodo();
+  modalProyecto.close();
+});
+
+// Escuchador delegado para las tarjetas de proyectos (tanto en Panel como en Proyectos)
+// Variable global para saber qué estamos borrando ("tarea" o "proyecto")
+let tipoElementoPorBorrar = null;
+let idElementoPorBorrar = null;
+
+function manejarAccionesProyecto(evento) {
+  const boton = evento.target.closest("button[data-accion]");
+  if (!boton) return;
+
+  const proyecto = proyectos.find((p) => p.id === boton.dataset.id);
+
+  if (boton.dataset.accion === "editar-proyecto") {
+    abrirModalProyecto(proyecto);
+  }
+
+  if (boton.dataset.accion === "borrar-proyecto") {
+    pedirConfirmacionBorradoProyecto(proyecto);
+  }
+}
+
+function pedirConfirmacionBorradoProyecto(proyecto) {
+  tipoElementoPorBorrar = "proyecto";
+  idElementoPorBorrar = proyecto.id;
+
+  document.getElementById("texto-borrar").textContent =
+    `Se borrará el proyecto «${proyecto.nombre}» y todas sus tareas asociadas. Esta acción no se puede deshacer.`;
+
+  document.getElementById("modal-borrar").showModal();
+}
+
+document.getElementById("lista-proyectos").addEventListener("click", manejarAccionesProyecto);
+document.getElementById("lista-proyectos-activos").addEventListener("click", manejarAccionesProyecto);
 
 
 // Pintado inicial

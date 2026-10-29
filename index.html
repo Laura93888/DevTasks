@@ -56,7 +56,7 @@
             <span id="nombre-usuario">Laura</span>
           </h1>
 
-          <button class="boton" type="button">
+          <button class="boton" type="button" id="abrir-modal-proyecto-panel>
             Nuevo proyecto
           </button>
         </header>
@@ -108,7 +108,7 @@
 
           <h1>Proyectos</h1>
 
-          <button class="boton" type="button">
+          <button class="boton" type="button" id="abrir-modal-proyecto">
             Nuevo proyecto
           </button>
 
@@ -254,8 +254,61 @@
     </div>
   </dialog>
 
+    <!-- Modal: nuevo / editar proyecto -->
+    <dialog class="modal" id="modal-proyecto">
+      <form class="formulario" id="formulario-proyecto">
 
-  <script type="module" src="main.js"></script>
+        <h2 id="titulo-modal-proyecto">Nuevo proyecto</h2>
 
+        <label class="campo">
+          <span>Nombre del proyecto</span>
+          <input type="text" name="nombre" required maxlength="60">
+        </label>
+
+        <label class="campo">
+          <span>Descripción</span>
+          <input type="text" name="descripcion" required maxlength="120">
+        </label>
+
+        <label class="campo">
+          <span>Cliente</span>
+          <input type="text" name="cliente" required maxlength="60">
+        </label>
+
+        <div class="campos-fila">
+
+          <label class="campo">
+            <span>Estado</span>
+            <select name="estado">
+              <option value="en-desarrollo" selected>En desarrollo</option>
+              <option value="en-revision">En revisión</option>
+            </select>
+          </label>
+
+          <label class="campo">
+            <span>Prioridad</span>
+            <select name="prioridad">
+              <option value="alta">Alta</option>
+              <option value="media" selected>Media</option>
+              <option value="baja">Baja</option>
+            </select>
+          </label>
+
+        </div>
+
+        <label class="campo">
+          <span>Fecha límite</span>
+          <input type="date" name="fechaLimite" required>
+        </label>
+
+        <div class="acciones-formulario">
+          <button class="boton boton-secundario" type="button" id="cancelar-proyecto">Cancelar</button>
+          <button class="boton" type="submit" id="boton-guardar-proyecto">Crear proyecto</button>
+        </div>
+
+      </form>
+    </dialog>
+
+ <script type="module" src="main.js"></script>
 </body>
 </html>

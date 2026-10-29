@@ -739,3 +739,22 @@ a {
   }
 }
 
+/* ==========================================================
+   15. Acciones de proyecto y mensaje de lista vacía
+   ========================================================== */
+
+.acciones-proyecto {
+  display: flex;
+  justify-content: flex-end;
+  gap: 4px;
+
+  margin-top: 14px;
+  padding-top: 12px;
+
+  border-top: 1px solid var(--borde);
+}
+
+/* Dentro de la rejilla de proyectos, el mensaje ocupa todo el ancho */
+.proyectos .lista-vacia {
+  grid-column: 1 / -1;
+}
