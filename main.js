@@ -476,7 +476,10 @@ const modalBorrar = document.getElementById("modal-borrar");
 let idTareaPorBorrar = null;
 
 function pedirConfirmacionBorrado(tarea) {
-  idTareaPorBorrar = tarea.id;
+  tipoElementoPorBorrar = "tarea";
+  idElementoPorBorrar = tarea.id;
+
+  document.getElementById("titulo-modal-borrar").textContent = "Borrar tarea";
 
   document.getElementById("texto-borrar").textContent =
     `Se borrará «${tarea.titulo}». Esta acción no se puede deshacer.`;
